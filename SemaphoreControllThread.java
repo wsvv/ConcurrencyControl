@@ -6,9 +6,11 @@ import javax.swing.*;
 
 
 class SemaphoreControllThread extends Thread{
+//	保存字符串
 	private String str1;
 	private String str2;
 	private String str3;
+//	保存文本框
 	private JLabel result1;
 	private JLabel result2;
 	private JLabel result3;
@@ -26,7 +28,7 @@ class SemaphoreControllThread extends Thread{
 	}
 
 	public void run() {
-		Semaphore sem=new Semaphore(-2);
+		Semaphore sem=new Semaphore(-2);		//前三个线程运行完成后才能修改result的值
 		new SemaphorePrintThread(str1,result1,sem).start();
 		new SemaphorePrintThread(str2,result2,sem).start();
 		new SemaphorePrintThread(str3,result3,sem).start();
