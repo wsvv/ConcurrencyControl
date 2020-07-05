@@ -25,7 +25,7 @@ public class SynchronizedControllThread extends Thread{
     }
 
     public void run() {
-        ExecutorService threadPool = Executors.newFixedThreadPool(3);
+       
         Object lock=new Object();
         new SynchronizedPrintThread(str1,result1,lock).start();
         new SynchronizedPrintThread(str2,result2,lock).start();
