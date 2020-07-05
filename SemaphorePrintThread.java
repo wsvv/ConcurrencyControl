@@ -17,7 +17,7 @@ public class SemaphorePrintThread extends Thread {
 	
 	public void run() {
 		try {
-			Thread.sleep(3*1000);
+			Thread.sleep((long)(Math.random()*10000+1000));
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

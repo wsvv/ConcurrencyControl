@@ -1,4 +1,5 @@
 package ConcurrencyControl;
+
 import javax.swing.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -28,7 +29,7 @@ public class SynchronizedControllThread extends Thread{
        
         Object lock=new Object();
         new SynchronizedPrintThread(str1,result1,lock).start();
-        new SynchronizedPrintThread(str2,result2,lock).start();
+        new SynchronizedPrintThread(str2,result2,lock).start(); 
         new SynchronizedPrintThread(str3,result3,lock).start();
 
         while(result1.getText().isEmpty()||
@@ -42,7 +43,7 @@ public class SynchronizedControllThread extends Thread{
         }
 
 
-        //用于在线程里修改result的值
+        //脫脙脫脷脭脷脧脽鲁脤脌茂脨脼赂脛result碌脛脰碌
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 result.setText(result1.getText()+"  "+result2.getText()+"  "+result3.getText());

@@ -14,7 +14,8 @@ public class SynchronizedPrintThread extends Thread{
 
     }
 
-    public void run(){
+    
+	public void run(){
         try{
             Thread.sleep((long)(Math.random()*10000+1000));
         } catch (InterruptedException e) {
