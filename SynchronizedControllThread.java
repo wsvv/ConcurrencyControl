@@ -6,11 +6,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
 public class SynchronizedControllThread extends Thread{
-    //	保存字符串
+	//读取的字符串
     private String str1;
     private String str2;
     private String str3;
-    //	保存文本框
+    //保存文本框
     private JLabel result1;
     private JLabel result2;
     private JLabel result3;
@@ -33,25 +33,19 @@ public class SynchronizedControllThread extends Thread{
         new SynchronizedPrintThread(str1,result1,lock).start();
         new SynchronizedPrintThread(str2,result2,lock).start(); 
         new SynchronizedPrintThread(str3,result3,lock).start();
-
-
-        // 判断三个文本框是否完成输出
+        
+        //判断三个文本框是否输出完成
         while(result1.getText().isEmpty()||
                 result2.getText().isEmpty()||
                 result3.getText().isEmpty()){
             synchronized (lock){
                 try{
-                    lock.wait();    //阻塞修改result文本框
+                	//阻塞修改result文本
+                    lock.wait();
                 }catch (InterruptedException e){}
             }
         }
+        result.setText(result1.getText()+"  "+result2.getText()+"  "+result3.getText());
 
-
-        //用于在线程里修改result的值
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                result.setText(result1.getText()+"  "+result2.getText()+"  "+result3.getText());
-            }
-        });
     }
 }

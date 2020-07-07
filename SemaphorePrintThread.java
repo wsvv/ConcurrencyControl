@@ -5,9 +5,9 @@ import javax.swing.*;
 
 public class SemaphorePrintThread extends Thread {
 	
-	private String str;		//保存文本
-	private JLabel result;	//文本框对象
-	private Semaphore sem; 		//信号量
+	private String str;
+	private JLabel result;
+	private Semaphore sem;
 	
 	SemaphorePrintThread(String str,JLabel result,Semaphore sem){
 		this.str=str;
@@ -17,18 +17,13 @@ public class SemaphorePrintThread extends Thread {
 	
 	public void run() {
 		try {
-			Thread.sleep((long)(Math.random()*10000+1000));		//随机延时1-10秒
+			Thread.sleep((long)(Math.random()*10000+1000));
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		
-		//用于在线程里修改result的值
-		SwingUtilities.invokeLater(new Runnable() {
-		public void run() {
-			result.setText(str);	//修改文本框的内容
-			sem.release();
-		}
-	});
+		result.setText(str);
+		sem.release();
+
 }
 }

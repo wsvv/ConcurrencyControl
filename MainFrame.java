@@ -108,20 +108,23 @@ public class MainFrame extends JFrame implements ActionListener{
 	//事件处理
 	public void actionPerformed(ActionEvent e) {
 		JButton jbt=(JButton)e.getSource();
-		//如果按确定
+		//如果按“确定”
 		if(jbt==ok) {
 			clearOutput();
             String str1=tf1.getText().trim();
     		String str2=tf2.getText().trim();
     		String str3=tf3.getText().trim();
+    		//未选择实现方式的弹窗提示
     		if(str1.equals("")|str2.equals("")|str3.equals("")) {
     			JOptionPane.showMessageDialog(null,"请输入完整数据");
     			}
     		
     		String choose=grp.getSelection().getActionCommand();
+    		//信号量方式
     		if(choose.equals("sem")) {
     			new SemaphoreControllThread(str1,str2,str3,result1,result2,result3,result).start();
     		}
+    		//睡眠唤醒方式
     		else if (choose.equals("bwn")) {
     			new SynchronizedControllThread(str1,str2,str3,result1,result2,result3,result).start();
     		}
